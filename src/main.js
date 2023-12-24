@@ -3,6 +3,8 @@ import App from './App.vue'
 
 import "normalize.css"
 
+import router from "./router"
+
 const app = createApp(App)
 
-app.mount('#app')
+app.use(router).mount('#app')
