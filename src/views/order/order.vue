@@ -1,13 +1,13 @@
 <template>
-    <div class="order">
-        Order
-    </div>
+  <div class="order">
+    <h2>order</h2>
+  </div>
 </template>
 
 <script setup>
 
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="less" scoped>
+  
 </style>
