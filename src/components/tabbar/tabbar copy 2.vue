@@ -1,12 +1,13 @@
+<!-- 弃用_修改默认组件样式的方法 :deep(类名) -->
 <template>
   <div class="tabbar">
     <van-tabbar v-model="currentIndex" active-color="#ff9854">
       <template v-for="(item, index) in tabbarData">
-        <van-tabbar-item :to="item.path">
-          <template #icon>
+        <van-tabbar-item :to="item.path" icon="home-o">
+          <!-- <template #icon>
             <img v-if="currentIndex !== index" :src="getImageUrl(item.image)" alt="" />
             <img v-else :src="getImageUrl(item.imageActive)" alt="" />
-          </template>
+          </template> -->
           <span>{{ item.text }}</span>
         </van-tabbar-item>
       </template>
@@ -25,6 +26,10 @@ const currentIndex = ref(0);
 .tabbar {
   img {
     height: 26px;
+  }
+
+  :deep(.van-icon-home-o) {
+    font-size: 50px;
   }
 }
 </style>
