@@ -1,27 +1,22 @@
 <template>
   <div class="home">
-    <div class="nav-bar">
-      <div class="title">深蓝之家</div>
+    <HomeNavBar></HomeNavBar>
+    <div class="banner">
+      <img src="@/assets/img/home/banner.webp" alt="">
     </div>
-    <h2>home</h2>
   </div>
 </template>
 
 <script setup>
-
+import HomeNavBar from "./cpns/home-nav-bar.vue"
 </script>
 
 <style lang="less" scoped>
-.nav-bar {
-  display: flex;
-  height: 36px;
-  justify-content: center;
-  align-items: center;
-}
-
-.title {
-  color: #ff6954;
-  font-size: 1.4em;
-  font-weight: 700;
+.home {
+  .banner {
+    img {
+      width: 100%;
+    }
+  }
 }
 </style>
