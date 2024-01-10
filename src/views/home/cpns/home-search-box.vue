@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import router from '@/router';
+import router from "@/router";
 
 const positionClick = () => {
   navigator.geolocation.getCurrentPosition(
@@ -24,8 +24,7 @@ const positionClick = () => {
   );
 };
 const cityClick = () => {
-  console.log("cityClick");
-  router.push("/city")
+  router.push("/city");
 };
 </script>
 
@@ -49,4 +48,5 @@ const cityClick = () => {
       width: 26px;
     }
   }
-}</style>
+}
+</style>
