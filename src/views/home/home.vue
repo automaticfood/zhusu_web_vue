@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HomeNavBar></HomeNavBar>
+    <HomeNavBar />
     <div class="banner">
       <img src="@/assets/img/home/banner.webp" alt="" />
     </div>

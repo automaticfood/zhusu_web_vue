@@ -11,6 +11,8 @@
 </template>
 
 <script setup>
+import router from '@/router';
+
 const positionClick = () => {
   navigator.geolocation.getCurrentPosition(
     (position) => {
@@ -23,6 +25,7 @@ const positionClick = () => {
 };
 const cityClick = () => {
   console.log("cityClick");
+  router.push("/city")
 };
 </script>
 
@@ -32,16 +35,18 @@ const cityClick = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .city {
     padding-left: 15px;
   }
+
   .position {
     padding-right: 15px;
     display: flex;
     align-items: center;
+
     img {
       width: 26px;
     }
   }
-}
-</style>
+}</style>
