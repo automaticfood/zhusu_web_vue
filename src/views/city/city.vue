@@ -1,13 +1,7 @@
 <template>
   <div class="city">
     <form action="/">
-      <van-search
-        v-model="searchValue"
-        show-action
-        placeholder="请输入搜索关键词"
-        @cancel="onCancel"
-        shape="round"
-      />
+      <van-search v-model="searchValue" show-action placeholder="请输入搜索关键词" @cancel="onCancel" shape="round" />
     </form>
     <van-tabs v-model:active="activeTab" color="#ff9854">
       <van-tab title="标签 1"></van-tab>
@@ -19,6 +13,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { getCityAll } from "@/services/modules/city"
 
 const router = useRouter();
 const searchValue = ref("");
@@ -28,6 +23,10 @@ const onCancel = () => {
 };
 
 const activeTab = ref("");
+
+getCityAll().then(res => {
+  console.log(res);
+})
 </script>
 
 <style lang="less" scoped></style>
