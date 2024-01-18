@@ -34,13 +34,13 @@ const cityClick = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 15px;
 
   .city {
-    padding-left: 15px;
+    flex: 1;
   }
 
   .position {
-    padding-right: 15px;
     display: flex;
     align-items: center;
 
