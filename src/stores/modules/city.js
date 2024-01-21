@@ -3,12 +3,12 @@ import { defineStore } from "pinia"
 
 const useCityStore = defineStore("cityStore", {
   state: () => ({
-    allCitys: {}
+    allCities: {}
   }),
   actions: {
     async fetchAllCitiesData() {
       const res = await getCityAll()
-      this.allCitys = res
+      this.allCities = res.data
     }
   }
 })

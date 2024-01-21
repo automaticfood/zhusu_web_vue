@@ -5,13 +5,13 @@
         <van-search v-model="searchValue" show-action placeholder="请输入搜索关键词" @cancel="onCancel" shape="round" />
       </form>
       <van-tabs v-model:active="activeTab" color="#ff9854">
-        <template v-for="(value, key, index ) in allCitys.data">
+        <template v-for="(value, key, index) in allCities">
           <van-tab :name="key" :title="value.title"></van-tab>
         </template>
       </van-tabs>
     </div>
-    <div class="body">
-      {{ currentTab }}
+    <div class="content">
+      <CityGroup :currentGroup="currentGroup" />
     </div>
   </div>
 </template>
@@ -19,24 +19,25 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
-import useCityStore from "@/stores/modules/city"
+import useCityStore from "@/stores/modules/city";
 import { storeToRefs } from "pinia";
+
+import CityGroup from "./cpns/city-group.vue"
 
 const router = useRouter();
 const searchValue = ref("");
 
 const onCancel = () => {
-  router.push('/home');
+  router.push("/home");
 };
 
 const activeTab = ref("");
 
-const cityStore = useCityStore()
-cityStore.fetchAllCitiesData()
-const { allCitys } = storeToRefs(cityStore)
+const cityStore = useCityStore();
+cityStore.fetchAllCitiesData();
+const { allCities } = storeToRefs(cityStore);
 
-const currentTab = computed(() => allCitys.value.data[activeTab.value])
-console.log();
+const currentGroup = computed(() => allCities.value[activeTab.value]);
 </script>
 
 <style lang="less" scoped>
@@ -48,7 +49,7 @@ console.log();
     width: 100%;
   }
 
-  .body {
+  .content {
     height: calc(100vh - 98px);
     margin-top: 98px;
     overflow-y: auto;
