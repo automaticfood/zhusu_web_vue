@@ -49,6 +49,7 @@ const currentGroup = computed(() => allCities.value[activeTab.value]);
   .head {
     position: fixed;
     width: 100%;
+    z-index: 9;
   }
 
   .content {
