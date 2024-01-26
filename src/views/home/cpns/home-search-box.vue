@@ -12,14 +12,14 @@
       <div class="start">
         <div class="date">
           <div class="tip">入住</div>
-          <div class="time">{{ startTime }}</div>
+          <div class="time">{{ startDate }}</div>
         </div>
-        <div class="stay">共一晚</div>
       </div>
+      <div class="stay">共一晚</div>
       <div class="end">
         <div class="date">
           <div class="tip">离店</div>
-          <div class="time">8月26日</div>
+          <div class="time">{{ endDate }}</div>
         </div>
       </div>
     </div>
@@ -31,6 +31,7 @@ import router from "@/router";
 import useCityStore from "@/stores/modules/city";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
+import { formateMonthDay } from "@/utils/format_date"
 
 const positionClick = () => {
   navigator.geolocation.getCurrentPosition(
@@ -49,7 +50,11 @@ const cityClick = () => {
 const cityStore = useCityStore()
 const { currentCity } = storeToRefs(cityStore)
 
-const startTime = ref(new Date("MM-DD"))
+const nowDate = new Date()
+const startDate = ref(formateMonthDay(nowDate))
+const newDate = nowDate.setDate(nowDate.getDate() + 1)
+const endDate = ref(formateMonthDay(newDate))
+
 
 </script>
 
@@ -79,24 +84,35 @@ const startTime = ref(new Date("MM-DD"))
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   padding: 0 20px;
   color: #999;
 
   .start {
-    flex: 1;
+    flex: 2;
     display: flex;
     height: 44px;
     align-items: center;
     justify-content: space-between;
+  }
 
-    .stay {
-      margin-right: 40px;
-    }
+  .stay {
+    flex: 1;
+    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    height: 44px;
+    line-height: 44px;
   }
 
   .end {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     min-width: 30%;
     padding-left: 20px;
+    height: 44px;
   }
 
   .date {
