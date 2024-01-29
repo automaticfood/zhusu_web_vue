@@ -8,14 +8,14 @@
       </div>
     </div>
 
-    <div class="item date-range">
+    <div class="item date-range" @click="showCalendar=true">
       <div class="start">
         <div class="date">
           <div class="tip">入住</div>
           <div class="time">{{ startDate }}</div>
         </div>
       </div>
-      <div class="stay">共一晚</div>
+      <div class="stay">共{{stayTime}}晚</div>
       <div class="end">
         <div class="date">
           <div class="tip">离店</div>
@@ -23,6 +23,15 @@
         </div>
       </div>
     </div>
+
+    <van-calendar 
+      color="#ff6954" 
+      v-model:show="showCalendar" 
+      type="range" 
+      :round="false"
+      @confirm="onConfirm"
+      :show-confirm="false"
+    />
   </div>
 </template>
 
@@ -31,7 +40,7 @@ import router from "@/router";
 import useCityStore from "@/stores/modules/city";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
-import { formateMonthDay } from "@/utils/format_date"
+import { formateMonthDay,getDiffDays } from "@/utils/format_date"
 
 const positionClick = () => {
   navigator.geolocation.getCurrentPosition(
@@ -51,14 +60,28 @@ const cityStore = useCityStore()
 const { currentCity } = storeToRefs(cityStore)
 
 const nowDate = new Date()
+const newDate = new Date().setDate(nowDate.getDate() + 1)
+
 const startDate = ref(formateMonthDay(nowDate))
-const newDate = nowDate.setDate(nowDate.getDate() + 1)
 const endDate = ref(formateMonthDay(newDate))
+const stayTime = ref(getDiffDays(nowDate,newDate))
+
+const showCalendar = ref(false)
+const onConfirm = (value) => {
+  startDate.value = formateMonthDay(value[0])
+  endDate.value = formateMonthDay(value[1])
+  showCalendar.value = false
+
+  stayTime.value = getDiffDays(value[0],value[1])
+}
 
 
 </script>
 
 <style lang="less" scoped>
+.search-box{
+  --van-calendar-popup-height: 100%;
+}
 .location {
   height: 44px;
   display: flex;
