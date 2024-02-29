@@ -32,6 +32,12 @@
       @confirm="onConfirm"
       :show-confirm="false"
     />
+    <div class="item price-counter">
+      <div class="start">价格不限</div>
+      <div class="end">人数不限</div>
+    </div>
+    <div class="item keyword">关键字/位置/民宿名</div>
+    <div class="hot-suggest"></div>
   </div>
 </template>
 
@@ -154,5 +160,14 @@ const onConfirm = (value) => {
       font-weight: 500;
     }
   }
+}
+.price-counter{
+  height: 44px;
+  .start{
+    border-right: 1px solid #f8f9f9;
+  }
+}
+.keyword{
+  height: 44px;
 }
 </style>
